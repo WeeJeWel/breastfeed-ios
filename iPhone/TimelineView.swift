@@ -1,9 +1,9 @@
 import SwiftUI
 import UIKit
 
-private struct TimelineHour: Hashable {
+private struct TimelineSlot: Hashable {
     let day: Date
-    let hour: Int
+    let index: Int
 }
 
 struct TimelineView: View {
@@ -12,8 +12,8 @@ struct TimelineView: View {
     @State private var dayAnchor = Calendar.current.startOfDay(for: Date())
     @State private var firstLoadedDay = Calendar.current.date(byAdding: .day, value: -3, to: Calendar.current.startOfDay(for: Date()))!
     @State private var lastLoadedDay = Calendar.current.startOfDay(for: Date())
-    @State private var visibleHour: TimelineHour?
-    @State private var restoringHour: TimelineHour?
+    @State private var visibleSlot: TimelineSlot?
+    @State private var restoringSlot: TimelineSlot?
     @State private var restoreAnchor = UnitPoint.top
     @State private var scrollMeasurements = TimelineScrollMeasurements()
     @State private var requestedDay: Date?
@@ -23,6 +23,7 @@ struct TimelineView: View {
     @State private var now = Date()
     @State private var calendarHeight: CGFloat = 420
     @State private var showingNew = false
+    @State private var newFeedingStart: Date?
     @State private var showingSettings = false
     @State private var showingCalendar = false
     @State private var editingEvent: FeedingEvent?
@@ -38,19 +39,21 @@ struct TimelineView: View {
         (-30...0).compactMap { Calendar.current.date(byAdding: .day, value: $0, to: dayAnchor) }
             .filter { $0 < Calendar.current.startOfDay(for: now) }
     }
-    private var hours: [TimelineHour] {
+    private var slots: [TimelineSlot] {
         let today = Calendar.current.startOfDay(for: now)
         let count = Calendar.current.dateComponents([.day], from: firstLoadedDay, to: min(lastLoadedDay, today)).day ?? 0
-        return (0...max(0, count)).flatMap { offset -> [TimelineHour] in
+        return (0...max(0, count)).flatMap { offset -> [TimelineSlot] in
             guard let day = Calendar.current.date(byAdding: .day, value: offset, to: firstLoadedDay) else { return [] }
-            let lastHour = day == today ? Calendar.current.component(.hour, from: now) : 23
-            return (0...lastHour).map { TimelineHour(day: day, hour: $0) }
+            let lastSlot = day == today
+                ? Calendar.current.component(.hour, from: now) * 2 + Calendar.current.component(.minute, from: now) / 30
+                : 47
+            return (0...lastSlot).map { TimelineSlot(day: day, index: $0) }
         }
     }
 
     var body: some View {
-        let eventsByHour = Dictionary(grouping: store.events) { event in
-            TimelineHour(day: Calendar.current.startOfDay(for: event.startedAt), hour: Calendar.current.component(.hour, from: event.startedAt))
+        let eventsBySlot = Dictionary(grouping: store.events) { event in
+            TimelineSlot(day: Calendar.current.startOfDay(for: event.startedAt), index: Calendar.current.component(.hour, from: event.startedAt) * 2 + Calendar.current.component(.minute, from: event.startedAt) / 30)
         }
         return VStack(spacing: 0) {
             HStack(spacing: 0) {
@@ -173,35 +176,39 @@ struct TimelineView: View {
             ScrollViewReader { timelineProxy in
                 ScrollView {
                     VStack(spacing: 0) {
-                        ForEach(hours, id: \.self) { hour in
-                            hourRow(hour, events: eventsByHour[hour] ?? [])
-                                .id(hour)
+                        ForEach(slots, id: \.self) { slot in
+                            slotRow(slot, events: eventsBySlot[slot] ?? [])
+                                .padding(.horizontal, 16)
+                                .background {
+                                    Color.clear
+                                        .contentShape(Rectangle())
+                                        .onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10) {
+                                            guard let start = Calendar.current.date(bySettingHour: slot.index / 2,
+                                                                                   minute: slot.index % 2 * 30,
+                                                                                   second: 0, of: slot.day) else { return }
+                                            newFeedingStart = start
+                                            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                                            showingNew = true
+                                        }
+                                }
+                                .id(slot)
                                 .onGeometryChange(for: CGRect.self) { geometry in
                                     geometry.frame(in: .named("timeline"))
                                 } action: { frame in
-                                    scrollMeasurements.frames[hour] = frame
-                                    if restoringHour == nil, frame.minY <= 1, frame.maxY > 1, visibleHour != hour {
-                                        visibleHour = hour
+                                    scrollMeasurements.frames[slot] = frame
+                                    if restoringSlot == nil, frame.minY <= 1, frame.maxY > 1, visibleSlot != slot {
+                                        visibleSlot = slot
                                     }
                                 }
                         }
                     }
-                    .padding(.horizontal, 16)
-                    .background {
-                        Color.clear
-                            .contentShape(Rectangle())
-                            .onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10) {
-                                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                                showingNew = true
-                            }
-                    }
-                    .onChange(of: hours) { _, _ in
-                        guard let hour = restoringHour else { return }
+                    .onChange(of: slots) { _, _ in
+                        guard let slot = restoringSlot else { return }
                         Task { @MainActor in
                             await Task.yield()
-                            timelineProxy.scrollTo(hour, anchor: restoreAnchor)
+                            timelineProxy.scrollTo(slot, anchor: restoreAnchor)
                             await Task.yield()
-                            restoringHour = nil
+                            restoringSlot = nil
                         }
                     }
                 }
@@ -214,45 +221,45 @@ struct TimelineView: View {
                 .modifier(TimelineScrollPhaseObserver(onInteraction: {
                     userIsScrolling = true
                 }, onIdle: {
-                    guard userIsScrolling, restoringHour == nil, let hour = visibleHour,
-                          let frame = scrollMeasurements.frames[hour] else { return }
-                    if selectedDay != hour.day {
-                        selectedDay = hour.day
+                    guard userIsScrolling, restoringSlot == nil, let slot = visibleSlot,
+                          let frame = scrollMeasurements.frames[slot] else { return }
+                    if selectedDay != slot.day {
+                        selectedDay = slot.day
                         UISelectionFeedbackGenerator().selectionChanged()
                     }
-                    if !Calendar.current.isDateInToday(hour.day) && !days.contains(hour.day) {
-                        dayAnchor = min(Calendar.current.startOfDay(for: now), Calendar.current.date(byAdding: .day, value: 7, to: hour.day)!)
+                    if !Calendar.current.isDateInToday(slot.day) && !days.contains(slot.day) {
+                        dayAnchor = min(Calendar.current.startOfDay(for: now), Calendar.current.date(byAdding: .day, value: 7, to: slot.day)!)
                     }
                     let earlierThreshold = Calendar.current.date(byAdding: .day, value: 1, to: firstLoadedDay)!
                     let laterThreshold = Calendar.current.date(byAdding: .day, value: -1, to: lastLoadedDay)!
                     let today = Calendar.current.startOfDay(for: now)
-                    guard hour.day <= earlierThreshold || (hour.day >= laterThreshold && lastLoadedDay < today) else { return }
+                    guard slot.day <= earlierThreshold || (slot.day >= laterThreshold && lastLoadedDay < today) else { return }
                     // Change the loaded window only at rest; preserve the row's exact screen position.
                     let availableHeight = scrollMeasurements.viewportHeight - frame.height
                     restoreAnchor = UnitPoint(x: 0, y: availableHeight > 0 ? frame.minY / availableHeight : 0)
-                    restoringHour = hour
-                    if hour.day <= earlierThreshold {
+                    restoringSlot = slot
+                    if slot.day <= earlierThreshold {
                         firstLoadedDay = Calendar.current.date(byAdding: .day, value: -7, to: firstLoadedDay)!
-                        lastLoadedDay = min(lastLoadedDay, Calendar.current.date(byAdding: .day, value: 7, to: hour.day)!)
+                        lastLoadedDay = min(lastLoadedDay, Calendar.current.date(byAdding: .day, value: 7, to: slot.day)!)
                     } else {
                         lastLoadedDay = min(today, Calendar.current.date(byAdding: .day, value: 7, to: lastLoadedDay)!)
-                        firstLoadedDay = max(firstLoadedDay, Calendar.current.date(byAdding: .day, value: -7, to: hour.day)!)
+                        firstLoadedDay = max(firstLoadedDay, Calendar.current.date(byAdding: .day, value: -7, to: slot.day)!)
                     }
                     scrollMeasurements.frames = scrollMeasurements.frames.filter { $0.key.day >= firstLoadedDay && $0.key.day <= lastLoadedDay }
                 }))
                 .task {
-                    timelineProxy.scrollTo(TimelineHour(day: selectedDay, hour: max(0, Calendar.current.component(.hour, from: Date()) - 1)), anchor: .top)
+                    timelineProxy.scrollTo(TimelineSlot(day: selectedDay, index: max(0, Calendar.current.component(.hour, from: now) * 2 + Calendar.current.component(.minute, from: now) / 30 - 2)), anchor: .top)
                     await Task.yield()
                     scrollReady = true
                 }
-                .onChange(of: visibleHour) { _, hour in
-                    guard scrollReady, restoringHour == nil, let hour else { return }
-                    if userIsScrolling && selectedDay != hour.day {
-                        selectedDay = hour.day
+                .onChange(of: visibleSlot) { _, slot in
+                    guard scrollReady, restoringSlot == nil, let slot else { return }
+                    if userIsScrolling && selectedDay != slot.day {
+                        selectedDay = slot.day
                         UISelectionFeedbackGenerator().selectionChanged()
                     }
-                    if !Calendar.current.isDateInToday(hour.day) && !days.contains(hour.day) {
-                        dayAnchor = min(Calendar.current.startOfDay(for: Date()), Calendar.current.date(byAdding: .day, value: 7, to: hour.day)!)
+                    if !Calendar.current.isDateInToday(slot.day) && !days.contains(slot.day) {
+                        dayAnchor = min(Calendar.current.startOfDay(for: Date()), Calendar.current.date(byAdding: .day, value: 7, to: slot.day)!)
                     }
                 }
                 .onChange(of: requestedDay) { _, day in
@@ -272,13 +279,13 @@ struct TimelineView: View {
                     if !Calendar.current.isDateInToday(target) && !days.contains(target) {
                         dayAnchor = min(Calendar.current.startOfDay(for: Date()), Calendar.current.date(byAdding: .day, value: 7, to: target)!)
                     }
-                    let hour = Calendar.current.isDateInToday(target)
-                        ? max(0, Calendar.current.component(.hour, from: Date()) - 1)
+                    let slot = Calendar.current.isDateInToday(target)
+                        ? max(0, Calendar.current.component(.hour, from: now) * 2 + Calendar.current.component(.minute, from: now) / 30 - 2)
                         : store.events.first(where: { Calendar.current.isDate($0.startedAt, inSameDayAs: target) })
-                            .map { Calendar.current.component(.hour, from: $0.startedAt) } ?? 0
+                            .map { Calendar.current.component(.hour, from: $0.startedAt) * 2 + Calendar.current.component(.minute, from: $0.startedAt) / 30 } ?? 0
                     Task { @MainActor in
                         await Task.yield()
-                        timelineProxy.scrollTo(TimelineHour(day: target, hour: hour), anchor: .top)
+                        timelineProxy.scrollTo(TimelineSlot(day: target, index: slot), anchor: .top)
                         requestedDay = nil
                     }
                 }
@@ -318,6 +325,7 @@ struct TimelineView: View {
         }
         .onChange(of: store.newFeedingRequested, initial: true) { _, requested in
             guard requested else { return }
+            newFeedingStart = nil
             showingBabyName = false
             confirmingDelete = false
             if editingEvent != nil || managingBaby != nil || showingSettings || showingExport || showingCalendar {
@@ -331,8 +339,10 @@ struct TimelineView: View {
                 store.newFeedingRequested = false
             }
         }
-        .sheet(isPresented: $showingNew) {
-            FeedingEditor(event: nil, suggestedSide: store.events.last(where: { $0.kind == .breast })?.side?.opposite ?? .left)
+        .sheet(isPresented: $showingNew, onDismiss: { newFeedingStart = nil }) {
+            FeedingEditor(event: nil,
+                          suggestedSide: store.events.last(where: { $0.kind == .breast })?.side?.opposite ?? .left,
+                          suggestedStart: newFeedingStart)
                 .environmentObject(store)
         }
         .sheet(item: $managingBaby, onDismiss: {
@@ -409,6 +419,7 @@ struct TimelineView: View {
             }
             Button {
                 UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                newFeedingStart = nil
                 showingNew = true
             } label: {
                 Label("New Feeding", systemImage: "plus")
@@ -433,16 +444,16 @@ struct TimelineView: View {
         .background(Palette.background)
     }
 
-    private func hourRow(_ hour: TimelineHour, events: [FeedingEvent]) -> some View {
-        let current = Calendar.current.isDateInToday(hour.day) && Calendar.current.component(.hour, from: Date()) == hour.hour
+    private func slotRow(_ slot: TimelineSlot, events: [FeedingEvent]) -> some View {
+        let current = Calendar.current.isDateInToday(slot.day) && (Calendar.current.component(.hour, from: now) * 2 + Calendar.current.component(.minute, from: now) / 30) == slot.index
         return VStack(alignment: .leading, spacing: 0) {
-            if hour.hour == 0 {
-                Text(hour.day.formatted(.dateTime.weekday(.abbreviated).month(.abbreviated).day()))
+            if slot.index == 0 {
+                Text(slot.day.formatted(.dateTime.weekday(.abbreviated).month(.abbreviated).day()))
                     .font(.caption.weight(.medium)).foregroundStyle(Palette.muted)
                     .padding(.top, 20).padding(.bottom, 12)
             }
             HStack(alignment: .top, spacing: 10) {
-                Text(String(format: "%02d:00", hour.hour))
+                Text(String(format: "%02d:%02d", slot.index / 2, slot.index % 2 * 30))
                     .font(.system(size: 11, weight: .regular, design: .monospaced))
                     .foregroundStyle(current ? Palette.accent : Palette.muted)
                     .frame(width: 38, alignment: .leading).padding(.top, 12)
@@ -523,7 +534,7 @@ private struct TimelineSwipeActionsContainer: ViewModifier {
 }
 
 private final class TimelineScrollMeasurements {
-    var frames: [TimelineHour: CGRect] = [:]
+    var frames: [TimelineSlot: CGRect] = [:]
     var viewportHeight: CGFloat = 0
 }
 

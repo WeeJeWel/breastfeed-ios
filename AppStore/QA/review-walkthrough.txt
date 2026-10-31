@@ -1,0 +1,39 @@
+BoobieTrackr 1.0 (3) — QA walkthrough
+
+Recording plan
+Use isolated simulator demo data with the fictional baby Cosmo. Do not record a family's real journal or Apple Account details. The recording must show actual interactions, not marketing mockups.
+
+1. Timeline and navigation
+Show half-hour groups, event icons, start times, quantities and saved durations. Scroll to an earlier day, select a day in the horizontal strip, return using Today, and open the calendar to show event dots. Future dates are unavailable. Show elapsed time below New Feeding: it uses the latest breast/bottle start, regardless of duration; pumping does not reset it.
+
+2. Breastfeeding and timers
+Tap New Feeding. Show Breast and Left/Right choices and the suggested opposite side from the previous breastfeed. Enable Start Timer and start a feed. Show the running timer in the app, Lock Screen Live Activity and Dynamic Island on a supported iPhone. Use Switch to Right/Left to save the current duration and start the other side; use Done to save the final duration. Show a separate breast entry with Start Timer off. The timer preference is remembered. Starting a replacement feed without explicitly completing the running feed discards that unfinished duration, but retains its feeding entry.
+
+3. Bottles and pumping
+Create a Bottle with an optional amount in ml. Show the reserved side-picker space. Create Pump entries with Left, Right and Both. Show that bottles and pumping do not start a Live Activity and amounts can be added later.
+
+4. Editing and deletion
+Tap an event; adjust its start and whole-minute duration or milk amount. Dismiss and reopen to show automatic saving. Show Delete Feeding's native confirmation and cancel it. On a disposable recording-only entry, confirm deletion and verify the editor dismisses without a crash. Show swipe-to-delete confirmation on another disposable demo entry. Long-press empty timeline space to open New Feeding; an event remains tappable for editing.
+
+5. Multiple babies
+Open the baby picker. Add a fictional second baby. Switch between babies and show their separate histories. Open More > Manage Baby and rename the demo baby. Show Delete Baby confirmation; demonstrate confirmed deletion only on an empty disposable demo baby. Return to Cosmo.
+
+6. iCloud partner sharing and CSV
+Show More > Invite Partner and explain that an Apple Account signed into iCloud is required on both devices. The native iCloud sharing sheet invites a second Apple Account; the recipient accepts the link and the shared baby appears in their picker. Every participant can rename the baby and add, edit or delete feeds. Participants can see who owns/shared the journal.
+A local-only simulator demonstration cannot verify an actual CloudKit invitation or cross-account sync. Show this limitation explicitly; do not present it as a successful sharing test.
+Show More > Export CSV and the native share sheet. The file contains only the selected baby's journal.
+
+7. Control Center and Shortcuts
+On iOS 18 or later, add BoobieTrackr's New Feeding control in Control Center. Show the breasts icon and tap it to open the feeding sheet. Show the New Feeding action in Shortcuts. No entry is saved until the user confirms it.
+
+8. Apple Watch
+Show the baby picker, Left/Right breastfeeding, running timer, Switch and Done, Bottle, and Pump Left/Right/Both. Show the last-feeding summary. A simulator recording does not establish real-device CloudKit sync.
+
+9. Languages
+Show Dutch in a short separate segment. Available languages: English, Dutch, German, French, Spanish, Italian, Brazilian Portuguese, Simplified Chinese and Japanese. Language follows iOS or the per-app language setting.
+
+Review requirements
+No app-specific account, password, paid feature or subscription. Local recording works without iCloud. iCloud is needed for sync and partner sharing. This is a journal, not medical advice, and it does not use HealthKit. The iPhone app includes the Watch companion; test Watch functionality on a paired Watch or Watch simulator. Live Activities require a compatible iPhone and system permission; the Control Center control requires iOS 18 or later.
+
+Status
+This is the recording checklist, not a claim that the screencast or all manual checks have been completed. Record results and any exclusions alongside the final video.

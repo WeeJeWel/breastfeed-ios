@@ -78,3 +78,13 @@ REPLACEMENT BUILD — 2026-10-27
 Version 1.0 (build 2) archived at build/release/BoobieTrackr-build-2.xcarchive. Includes elapsed time since last feeding, whole-minute editing, eight added languages, Control Center/Shortcuts entry, and the editor deletion crash fix. All 28 tests passed before archiving.
 ITSAppUsesNonExemptEncryption is false: only Apple system-service encryption, no custom encryption or third-party cryptography libraries.
 Build 2 installed successfully on both Emile’s and Mandy’s iPhones. Previous submission withdrawn; version status verified as Developer Rejected. Updated description and review notes saved in App Store Connect. Xcode upload completed October 27, 2026 at 17:42 Europe/Amsterdam. Build 2 processed successfully and was selected for the replacement submission. Submitted October 27, 2026 at 17:47 Europe/Amsterdam; status verified: Waiting for Review. Submission ID: e77beab3-f690-40d3-a5dd-e11f5c787ab4. Version 1.0 (2). Manual release remains selected. Export compliance accepted from the embedded exempt-encryption declaration; no further security dialog appeared.
+
+BUILD 3 — 2026-10-31
+Version 1.0 (build 3) archived at build/release/BoobieTrackr-build-3.xcarchive and uploaded successfully at 13:54 Europe/Amsterdam. App Store Connect processing completed with VALID status. The archive includes half-hour timeline grouping and the corrected Control Center breasts symbol. All 29 automated tests passed. Build 3 was installed on Emile’s iPhone 16 Pro.
+The user subsequently supplied Apple's Guideline 2.1 request for a physical-device recording and six explanatory items. The local QA checklist and review-notes draft are unfinished reference material; this task did not record or upload a video.
+Before the build 4 upload, App Store Connect reports version 1.0 Waiting for Review with build 3 selected. The user instructed this task to leave the review unchanged.
+
+BUILD 4 — UPLOADED 2026-10-31
+Adds the long-press block time as the new feeding’s default date and time, preserving :00/:30 when saved. The New Feeding button and Control Center continue to default to the current time. Empty-space-only gesture behavior is retained.
+Upload only: do not change the selected review build, review notes, or submission state.
+Archive succeeded at build/release/BoobieTrackr-build-4.xcarchive. Version 1.0 (4) verified on the iPhone, Watch and Live Activity extension. Upload succeeded. API comparison confirmed that the version attributes, selected build 3 and all review-detail attributes remained unchanged; version 1.0 is still Waiting for Review.

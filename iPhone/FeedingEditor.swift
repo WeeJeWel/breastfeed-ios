@@ -18,11 +18,12 @@ struct FeedingEditor: View {
     @State private var validationMessage: String?
     @FocusState private var numberFocused: Bool
 
-    init(event: FeedingEvent?, suggestedSide: FeedingSide = .left) {
+    init(event: FeedingEvent?, suggestedSide: FeedingSide = .left, suggestedStart: Date? = nil) {
         self.event = event
         _kind = State(initialValue: event?.kind ?? .breast)
         _side = State(initialValue: event?.side ?? suggestedSide)
-        _start = State(initialValue: event?.startedAt ?? Date())
+        _start = State(initialValue: event?.startedAt ?? suggestedStart ?? Date())
+        _timeWasEdited = State(initialValue: suggestedStart != nil)
         _amount = State(initialValue: event?.volume.map { $0.doubleValue.formatted(.number.grouping(.never)) } ?? "")
         _minutes = State(initialValue: event?.wholeMinutes.map { $0.formatted(.number.grouping(.never)) } ?? "")
     }

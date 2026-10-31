@@ -1,0 +1,34 @@
+BoobieTrackr is a free feeding journal for iPhone with an Apple Watch companion. It records breastfeeding, bottle feeding and pumping for one or more babies. No app-specific login, password, subscription or purchase is required. It does not diagnose, recommend feeding quantities or provide medical advice. It does not use HealthKit.
+
+GETTING STARTED
+Launch the app and tap New Feeding. You can record feeds locally without signing into iCloud. To name the journal, open the baby picker at the top left or More (...) > Manage Baby. Choose New Baby in the picker to create separate journals.
+
+BREASTFEEDING AND LIVE ACTIVITIES
+1. Tap New Feeding > Breast > Left or Right.
+2. Enable Start Timer, then tap Start Feeding. Keep the app in the foreground for this initial action.
+3. The running feed appears above New Feeding. On a compatible iPhone, lock the screen to see its Live Activity; on supported models it also appears in the Dynamic Island. Allow Live Activities if iOS asks.
+4. Done saves the duration. Switch to Right/Left saves the previous feed and starts a new timer on the other side.
+5. Start Timer is optional and remembered. Turn it off to add an entry without timing. An unfinished timer's duration is discarded if it is replaced without completion; the feeding entry remains.
+
+BOTTLES AND PUMPING
+New Feeding > Bottle supports an optional milk amount in ml. Pump supports Left, Right or Both and optional ml. Neither starts a Live Activity. Amounts can be added later.
+
+EDITING, HISTORY AND EXPORT
+Tap any event to change its type, side, start time, amount or duration. Changes save automatically; there is no Save button. Duration editing uses whole minutes. Delete Feeding presents a confirmation. Swipe a timeline event to reveal Delete. Long-press an empty area to open New Feeding.
+The timeline uses half-hour groups. Choose a day above it or use the calendar (dots indicate days with entries); Today returns to the current day. Future dates are disabled. The elapsed-time label measures from the most recent breast/bottle start, excluding pumping and ignoring duration.
+More (...) > Export CSV opens the native share sheet with the selected baby's journal.
+
+ICLOUD AND PARTNER INVITATIONS
+An Apple Account signed into iCloud is required for sync and sharing, but not local entry. To test sharing, use two devices signed into two different Apple Accounts with iCloud available. On the owner's iPhone, select a baby > More (...) > Invite Partner > Invite Partner, then send the native iCloud invitation to the second account. Open and accept that invitation on the second device. The shared baby appears in its baby picker. All invited participants can rename the baby and add, edit or delete entries. A participant can open Participants to see the share details. Sharing uses CloudKit; there is no separate developer-hosted login or backend.
+
+APPLE WATCH
+Install the included Watch app on a paired Apple Watch. Choose a baby at the top. Tap Left/Right to start breastfeeding; use Done or Switch to finish/switch. Bottle records an entry immediately; Pump offers Left/Right/Both. Amounts can be edited on iPhone. iCloud availability is needed to sync the same journal across devices.
+
+CONTROL CENTER / SHORTCUTS
+On iOS 18 or later: edit Control Center > Add a Control > BoobieTrackr > New Feeding. Its breasts icon opens the feeding sheet; the user still confirms the entry. New Feeding is also available as a Shortcuts action.
+
+LANGUAGES
+English, Dutch, German, French, Spanish, Italian, Brazilian Portuguese, Simplified Chinese and Japanese. Uses the system or per-app language setting. The interface always uses dark colors.
+
+BUILD 3
+Includes half-hour timeline grouping and the corrected Control Center breasts symbol. Also includes the previous editor-deletion crash fix, whole-minute editing and elapsed-time label.
