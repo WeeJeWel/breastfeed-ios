@@ -1,6 +1,10 @@
-# BreastFeed
+<p align="center">
+  <img src="iPhone/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="128" height="128" alt="BreastFeed app icon">
+</p>
 
-One less thing to remember.
+<h1 align="center">BreastFeed</h1>
+
+<p align="center">One less thing to remember.</p>
 
 A simple feeding journal for iPhone and Apple Watch, made for sleepy parents and middle-of-the-night feeds.
 
