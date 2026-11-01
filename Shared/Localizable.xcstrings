@@ -4935,6 +4935,59 @@
           }
         }
       }
+    },
+    "iCloud is taking longer than expected. You can close this screen and try again shortly.": {
+      "extractionState": "manual",
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud duurt langer dan verwacht. Je kunt dit scherm sluiten en het straks opnieuw proberen."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud braucht länger als erwartet. Du kannst diesen Bildschirm schließen und es gleich noch einmal versuchen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud prend plus de temps que prévu. Vous pouvez fermer cet écran et réessayer dans un instant."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud está tardando más de lo esperado. Puedes cerrar esta pantalla e intentarlo de nuevo en unos momentos."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud sta impiegando più tempo del previsto. Puoi chiudere questa schermata e riprovare tra poco."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iCloud está demorando mais que o esperado. Você pode fechar esta tela e tentar novamente em instantes."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud 所需的时间比预期更长。你可以关闭此页面，稍后重试。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloudの処理に時間がかかっています。この画面を閉じて、しばらくしてからもう一度お試しください。"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

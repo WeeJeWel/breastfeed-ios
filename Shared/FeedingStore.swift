@@ -67,6 +67,7 @@ final class FeedingStore: ObservableObject {
     private(set) var loaded = false
     private var observers: [NSObjectProtocol] = []
     #if os(iOS)
+    var shareRequests: [NSManagedObjectID: Task<CKShare, Error>] = [:]
     @Published var newFeedingRequested = false
     var liveActivitySyncing = false
     var liveActivitySyncAgain = false

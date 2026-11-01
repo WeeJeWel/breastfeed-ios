@@ -108,6 +108,7 @@ struct TimelineView: View {
                     Button { showingSettings = true } label: {
                         Label(store.sharedStore != nil && store.activeJournal?.objectID.persistentStore == store.sharedStore ? String(localized: "Participants") : String(localized: "Invite Partner"), systemImage: "person.2")
                     }
+                    .disabled(store.activeJournal == nil)
                     Button {
                         do { exportURL = try store.exportCSV(); showingExport = true }
                         catch { store.errorMessage = error.localizedDescription }
@@ -357,7 +358,12 @@ struct TimelineView: View {
         }
         .sheet(isPresented: $showingSettings, onDismiss: {
             if store.newFeedingRequested { showingNew = true; store.newFeedingRequested = false }
-        }) { SharingView().environmentObject(store) }
+        }) {
+            SharingView(journalID: store.activeJournal?.objectID,
+                        babyName: store.activeJournal?.name ?? String(localized: "Our baby"),
+                        isSharedJournal: store.sharedStore != nil && store.activeJournal?.objectID.persistentStore == store.sharedStore)
+                .environmentObject(store)
+        }
         .sheet(isPresented: $showingExport, onDismiss: {
             if store.newFeedingRequested { showingNew = true; store.newFeedingRequested = false }
         }) { if let exportURL { ExportSheet(url: exportURL) } }

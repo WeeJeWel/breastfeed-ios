@@ -1,3 +1,4 @@
+import CloudKit
 import CoreData
 import XCTest
 import SwiftUI
@@ -15,6 +16,48 @@ final class FeedingStoreTests: XCTestCase {
     override func tearDown() async throws {
         store = nil
         UserDefaults.standard.removePersistentDomain(forName: suite)
+    }
+
+    func testSharingUnavailableNeverCreatesBabyOrChangesSelection() async throws {
+        let first = try store.createBaby(name: "Alex")
+        let event = try store.add(kind: .bottle, ml: 60)
+        let second = try store.createBaby(name: "Sam")
+        do {
+            _ = try await store.prepareShare(for: first.objectID)
+            XCTFail("A local-only store must not start CloudKit sharing")
+        } catch {
+            XCTAssertTrue(store.shareRequests.isEmpty)
+        }
+        store.refresh()
+        XCTAssertEqual(store.journals.count, 2)
+        XCTAssertEqual(store.activeJournal, second)
+        XCTAssertEqual(event.journal, first)
+        XCTAssertTrue(store.events.isEmpty)
+    }
+
+    func testReopeningSharingJoinsPendingRequestEvenAfterWaiterIsCancelled() async throws {
+        let baby = try store.createBaby(name: "Alex")
+        var completion: CheckedContinuation<CKShare, Error>?
+        let pending = Task<CKShare, Error> {
+            try await withCheckedThrowingContinuation { completion = $0 }
+        }
+        store.shareRequests[baby.objectID] = pending
+        let first = Task { try await store.prepareShare(for: baby.objectID) }
+        await Task.yield()
+        first.cancel()
+        let second = Task { try await store.prepareShare(for: baby.objectID) }
+        // Resolve only after the background operation has started.
+        while completion == nil { await Task.yield() }
+        XCTAssertFalse(pending.isCancelled)
+        completion?.resume(throwing: NSError(domain: "SharingTest", code: 42))
+        for waiter in [first, second] {
+            do { _ = try await waiter.value; XCTFail("Expected the shared operation's result") }
+            catch { XCTAssertEqual((error as NSError).domain, "SharingTest") }
+        }
+        XCTAssertEqual(store.journals.count, 1)
+        XCTAssertEqual(store.activeJournal, baby)
+        XCTAssertTrue(store.events.isEmpty)
+        store.shareRequests[baby.objectID] = nil
     }
 
     func testNewBreastfeedingStartsTimerWithoutDuration() throws {
