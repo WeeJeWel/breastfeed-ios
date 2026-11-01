@@ -1,8 +1,8 @@
 NAME
-BoobieTrackr
+BreastFeed • Baby Milk Tracker
 
 SUBTITLE
-Breast, bottle & pumping log
+Track Breast, Bottle & Pump
 
 PROMOTIONAL TEXT
 One less thing to remember. Log feeds, switch sides, and share your baby's journal with your partner—from your iPhone or Apple Watch.
@@ -10,7 +10,7 @@ One less thing to remember. Log feeds, switch sides, and share your baby's journ
 DESCRIPTION
 Was it left or right last time?
 
-BoobieTrackr keeps your baby's feeds in one simple timeline, so you can spend less time remembering and more time with your baby.
+BreastFeed keeps your baby's feeds in one simple timeline, so you can spend less time remembering and more time with your baby.
 
 LOG EVERY FEED
 Track breastfeeding, bottles, and pumping. Choose a side, add milk amounts when you know them, and adjust the time with a tap. Changes save automatically.
@@ -70,21 +70,41 @@ Production two-account sync has not yet been exercised with the distribution bui
 
 SCREENSHOT GENERATION
 Raw simulator captures: AppStore/Screenshots/Raw (isolated Cosmo demo data).
-Run: swift -module-cache-path /tmp/boobie-swift-cache Scripts/GenerateAppStoreScreenshots.swift
+Run: swift -module-cache-path /tmp/breastfeed-swift-cache Scripts/GenerateAppStoreScreenshots.swift
 Full-size exports: 1320 x 2868. Medium exports uploaded: 1206 x 2622.
 Medium export command: sips -z 2622 1206 <source> --out <destination>
 
 REPLACEMENT BUILD — 2026-10-27
-Version 1.0 (build 2) archived at build/release/BoobieTrackr-build-2.xcarchive. Includes elapsed time since last feeding, whole-minute editing, eight added languages, Control Center/Shortcuts entry, and the editor deletion crash fix. All 28 tests passed before archiving.
+Version 1.0 (build 2) archived successfully. Includes elapsed time since last feeding, whole-minute editing, eight added languages, Control Center/Shortcuts entry, and the editor deletion crash fix. All 28 tests passed before archiving.
 ITSAppUsesNonExemptEncryption is false: only Apple system-service encryption, no custom encryption or third-party cryptography libraries.
 Build 2 installed successfully on both Emile’s and Mandy’s iPhones. Previous submission withdrawn; version status verified as Developer Rejected. Updated description and review notes saved in App Store Connect. Xcode upload completed October 27, 2026 at 17:42 Europe/Amsterdam. Build 2 processed successfully and was selected for the replacement submission. Submitted October 27, 2026 at 17:47 Europe/Amsterdam; status verified: Waiting for Review. Submission ID: e77beab3-f690-40d3-a5dd-e11f5c787ab4. Version 1.0 (2). Manual release remains selected. Export compliance accepted from the embedded exempt-encryption declaration; no further security dialog appeared.
 
 BUILD 3 — 2026-10-31
-Version 1.0 (build 3) archived at build/release/BoobieTrackr-build-3.xcarchive and uploaded successfully at 13:54 Europe/Amsterdam. App Store Connect processing completed with VALID status. The archive includes half-hour timeline grouping and the corrected Control Center breasts symbol. All 29 automated tests passed. Build 3 was installed on Emile’s iPhone 16 Pro.
+Version 1.0 (build 3) archived successfully and uploaded successfully at 13:54 Europe/Amsterdam. App Store Connect processing completed with VALID status. The archive includes half-hour timeline grouping and the corrected Control Center breasts symbol. All 29 automated tests passed. Build 3 was installed on Emile’s iPhone 16 Pro.
 The user subsequently supplied Apple's Guideline 2.1 request for a physical-device recording and six explanatory items. The local QA checklist and review-notes draft are unfinished reference material; this task did not record or upload a video.
 Before the build 4 upload, App Store Connect reports version 1.0 Waiting for Review with build 3 selected. The user instructed this task to leave the review unchanged.
 
 BUILD 4 — UPLOADED 2026-10-31
 Adds the long-press block time as the new feeding’s default date and time, preserving :00/:30 when saved. The New Feeding button and Control Center continue to default to the current time. Empty-space-only gesture behavior is retained.
 Upload only: do not change the selected review build, review notes, or submission state.
-Archive succeeded at build/release/BoobieTrackr-build-4.xcarchive. Version 1.0 (4) verified on the iPhone, Watch and Live Activity extension. Upload succeeded. API comparison confirmed that the version attributes, selected build 3 and all review-detail attributes remained unchanged; version 1.0 is still Waiting for Review.
+Build 4 archive succeeded. Version 1.0 (4) verified on the iPhone, Watch and Live Activity extension. Upload succeeded. API comparison confirmed that the version attributes, selected build 3 and all review-detail attributes remained unchanged; version 1.0 is still Waiting for Review.
+
+
+BREASTFEED NEW LISTING — 2026-11-01 (SUBMITTED)
+App Store ID: 6829426046
+Store title: BreastFeed • Baby Milk Tracker
+Device display name: BreastFeed
+Bundle ID: app.breastfeed
+SKU: breastfeed
+Version/build: 1.0 (6)
+Watch: app.breastfeed.watchkitapp; Live Activity/Control Center: app.breastfeed.activity.
+New iCloud container: iCloud.app.breastfeed. The previous app/container remain untouched.
+CSV and JSON export only the selected baby. JSON includes that baby's identity, name and feedings, with timestamps, kind/side, volume and duration. Import JSON is in the New Baby sheet. Imports preserve existing records by UUID, do not restart timers, and validate before saving.
+35 automated tests passed, including separate-baby JSON export, round-trip restoration, duplicate/conflict rejection and preservation of existing edits. Simulator UI verified Export submenu, JSON share/save to Files, subtle Import JSON action, and duplicate-free reimport.
+API saved description, support/privacy URLs, review notes, free pricing and availability in 175 territories. Four renamed iPhone screenshots and a Watch screenshot uploaded. Review attachment 4f54dff9-9f3a-46d7-8703-d77680a45b4a (BreastFeed-physical-device-demo.mp4) is COMPLETE. The supplied 67.8-second physical-device recording predates this rename and JSON changes, disclosed in review notes.
+Version ID: 95287333-e0e0-4f9e-8dfb-0361589a22aa. Review draft: 46503f57-4bfb-437f-94f6-3d8c4302615a. SUBMITTED at 14:31 CET on November 1, 2026. Apple API confirms WAITING_FOR_REVIEW, version 1.0, selected build 6.
+Privacy and medical-device declarations are complete. New development profiles generated through the API now include iCloud.app.breastfeed for both iPhone and Watch. Manual development signing successfully archived build 6; App Store export/upload uses API authentication. All five screenshots and the recording are COMPLETE.
+
+CONTAINER CHANGE — 2026-11-01
+User requested a clean new container rather than retaining the old identifier. Active configuration now uses iCloud.app.breastfeed. The old container and existing installations are untouched. Existing baby journals require export/import into the new container; invitations must be recreated. The currently installed old app does not yet include JSON export, so migration requires an export-capable legacy update before removing that app.
+User confirmed App Privacy published and regulated-medical-device declaration completed. New container registration and association with app.breastfeed and app.breastfeed.watchkitapp are verified in regenerated profiles. CloudKit management token saved. Imported the existing working schema into the new Development environment through cktool; user deployed to Production in CloudKit Console. API exports confirm Development and Production schemas match exactly. No user records were copied. Build 6 installed on Emile’s iPhone; launch check blocked by the locked device.

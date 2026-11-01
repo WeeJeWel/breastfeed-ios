@@ -2,7 +2,7 @@ import SwiftUI
 import WatchKit
 
 @main
-struct BoobieTrackrWatchApp: App {
+struct BreastFeedWatchApp: App {
     @StateObject private var store = FeedingStore.shared
     @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {

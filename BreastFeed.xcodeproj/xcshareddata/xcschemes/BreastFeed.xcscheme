@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "342016BC0E634B54B780493A"
-               BuildableName = "BoobieTrackrWatch.app"
-               BlueprintName = "BoobieTrackrWatch"
-               ReferencedContainer = "container:BoobieTrackr3000.xcodeproj">
+               BlueprintIdentifier = "E2C394A8EE325A2DEF65262B"
+               BuildableName = "BreastFeed.app"
+               BlueprintName = "BreastFeed"
+               ReferencedContainer = "container:BreastFeed.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,14 +32,27 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "342016BC0E634B54B780493A"
-            BuildableName = "BoobieTrackrWatch.app"
-            BlueprintName = "BoobieTrackrWatch"
-            ReferencedContainer = "container:BoobieTrackr3000.xcodeproj">
+            BlueprintIdentifier = "E2C394A8EE325A2DEF65262B"
+            BuildableName = "BreastFeed.app"
+            BlueprintName = "BreastFeed"
+            ReferencedContainer = "container:BreastFeed.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F0C9929DD3BB864F9EBAC69D"
+               BuildableName = "BreastFeedTests.xctest"
+               BlueprintName = "BreastFeedTests"
+               ReferencedContainer = "container:BreastFeed.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <CommandLineArguments>
+      </CommandLineArguments>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -55,10 +68,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "342016BC0E634B54B780493A"
-            BuildableName = "BoobieTrackrWatch.app"
-            BlueprintName = "BoobieTrackrWatch"
-            ReferencedContainer = "container:BoobieTrackr3000.xcodeproj">
+            BlueprintIdentifier = "E2C394A8EE325A2DEF65262B"
+            BuildableName = "BreastFeed.app"
+            BlueprintName = "BreastFeed"
+            ReferencedContainer = "container:BreastFeed.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,10 +85,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "342016BC0E634B54B780493A"
-            BuildableName = "BoobieTrackrWatch.app"
-            BlueprintName = "BoobieTrackrWatch"
-            ReferencedContainer = "container:BoobieTrackr3000.xcodeproj">
+            BlueprintIdentifier = "E2C394A8EE325A2DEF65262B"
+            BuildableName = "BreastFeed.app"
+            BlueprintName = "BreastFeed"
+            ReferencedContainer = "container:BreastFeed.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

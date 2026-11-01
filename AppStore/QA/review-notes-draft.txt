@@ -1,4 +1,4 @@
-BoobieTrackr is a free feeding journal for iPhone with an Apple Watch companion. It records breastfeeding, bottle feeding and pumping for one or more babies. No app-specific login, password, subscription or purchase is required. It does not diagnose, recommend feeding quantities or provide medical advice. It does not use HealthKit.
+BreastFeed is a free feeding journal for iPhone with an Apple Watch companion. It records breastfeeding, bottle feeding and pumping for one or more babies. No app-specific login, password, subscription or purchase is required. It does not diagnose, recommend feeding quantities or provide medical advice. It does not use HealthKit.
 
 GETTING STARTED
 Launch the app and tap New Feeding. You can record feeds locally without signing into iCloud. To name the journal, open the baby picker at the top left or More (...) > Manage Baby. Choose New Baby in the picker to create separate journals.
@@ -25,7 +25,7 @@ APPLE WATCH
 Install the included Watch app on a paired Apple Watch. Choose a baby at the top. Tap Left/Right to start breastfeeding; use Done or Switch to finish/switch. Bottle records an entry immediately; Pump offers Left/Right/Both. Amounts can be edited on iPhone. iCloud availability is needed to sync the same journal across devices.
 
 CONTROL CENTER / SHORTCUTS
-On iOS 18 or later: edit Control Center > Add a Control > BoobieTrackr > New Feeding. Its breasts icon opens the feeding sheet; the user still confirms the entry. New Feeding is also available as a Shortcuts action.
+On iOS 18 or later: edit Control Center > Add a Control > BreastFeed > New Feeding. Its breasts icon opens the feeding sheet; the user still confirms the entry. New Feeding is also available as a Shortcuts action.
 
 LANGUAGES
 English, Dutch, German, French, Spanish, Italian, Brazilian Portuguese, Simplified Chinese and Japanese. Uses the system or per-app language setting. The interface always uses dark colors.

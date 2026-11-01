@@ -1,0 +1,26 @@
+Was it left or right last time?
+
+BreastFeed keeps your baby's feeds in one simple timeline, so you can spend less time remembering and more time with your baby.
+
+LOG EVERY FEED
+Track breastfeeding, bottles, and pumping. Choose a side, add milk amounts when you know them, and adjust the time with a tap. Changes save automatically.
+
+A TIMER WHEN YOU NEED ONE
+Start a breastfeeding timer and follow it from your iPhone's Lock Screen. Tap Done to save the duration, or switch sides to finish one feed and start the next. Prefer a quick entry? Leave the timer off.
+
+MADE FOR NIGHT FEEDS
+A dark interface, soft pink accents, and large controls keep the essentials easy to find, even in the small hours.
+
+SHARE THE JOURNAL
+Invite your partner to the same baby's journal through iCloud. Both of you can add and edit feeds. Keep separate journals for multiple babies and switch between them whenever you need to.
+
+QUICK ENTRIES ON YOUR WRIST
+Start a left or right feed, log a bottle, or record pumping from Apple Watch. Save a breastfeeding timer or switch sides right in the Watch app.
+
+YOUR HISTORY, AT A GLANCE
+Browse the daily timeline, see how long it has been since the last feed, jump to a date, and export a baby's feeding history as a CSV file. Export the selected baby and their feedings as a JSON backup and import it from New Baby. Existing entries are preserved when importing again.
+
+ONE TAP FROM CONTROL CENTER
+Open a new feeding from Control Center or Shortcuts. Available in English, Dutch, German, French, Spanish, Italian, Portuguese, Simplified Chinese, and Japanese.
+
+No ads. No separate account to create. iCloud sync and partner invitations use your Apple Account.

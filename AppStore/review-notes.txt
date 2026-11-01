@@ -1,0 +1,23 @@
+PURPOSE AND AUDIENCE
+BreastFeed is a free feeding journal for parents and caregivers of babies. It records breastfeeding side, bottles, pumping, optional amounts and durations, helping families remember the last feeding and coordinate care. It provides record keeping, not medical diagnosis, treatment, dosing or feeding recommendations.
+
+GETTING STARTED
+No registration, app login, demo credentials, subscription, purchase or sample file is required. Launch the app and tap New Feeding to create the first entry, or tap the baby menu > New Baby to enter a name. The journal works locally without an iCloud account. For sync/invitations, the reviewer must be signed into their own Apple Account with iCloud enabled for the app; we do not supply or request Apple Account credentials.
+
+MAIN FEATURES
+1. Tap New Feeding. Choose Breast (Left/Right), Pump (Left/Right/Both) or Bottle. Bottle and pump accept optional ml. Tap Start Feeding/Add Feeding to save.
+2. With Breast and Start Timer enabled, a Live Activity shows the elapsed time and side. Done saves the duration. Switch to Left/Right saves the current duration and starts the other side. Timers abandoned without Done do not save a duration. Starting a different feed discards the old timer duration, keeping the entry.
+3. Tap an entry to edit its time, type, amount or whole-minute duration; changes save automatically. Delete Feeding requires confirmation. Swipe an entry to delete. Long-press empty timeline space to prefill that half-hour block's time.
+4. Browse dates with the horizontal day strip or calendar. Today returns to today. The text below New Feeding shows elapsed time from the start of the last breast/bottle feed, excluding pumping.
+5. Tap the baby name > New Baby to create another journal. Switch babies there. More (...) > Manage Baby renames or deletes that baby and its feedings after confirmation.
+6. More (...) > Invite Partner opens native private iCloud sharing. Invitees can add/edit/delete in that journal and see its participants. Both devices need iCloud. There is no public feed, discovery, messaging or stranger interaction. The owner manages participants in Apple's sharing UI.
+7. More (...) > Export > CSV exports the selected baby's feedings. JSON exports that same selected baby and their feedings. Baby menu > New Baby > Import JSON opens Files and restores a BreastFeed JSON export. Importing again skips existing IDs and keeps their current edits. New imports do not recreate invitations or restart timers.
+8. Add New Feeding to iPhone Control Center (iOS 18+) or use Shortcuts to open the editor.
+9. The companion Watch app offers a baby picker and quick feeding entries, plus Done/Switch for a running breastfeeding timer.
+
+SERVICES, CONTENT AND REGIONS
+Core functionality uses only Apple's local Core Data storage, CloudKit/iCloud (private and explicitly invited shared journals), native sharing, ActivityKit/WidgetKit, App Intents/Shortcuts, and the Watch companion. No proprietary server, external data provider, analytics, advertising, AI service, payment processor, HealthKit access or app account system is used. No account registration/deletion flow exists; baby journals can be deleted in Manage Baby. No paid content, in-app purchases or public user-generated-content platform exists.
+Features are the same in all regions, subject to Apple's iCloud/service availability. UI languages: English, Dutch, German, French, Spanish, Italian, Brazilian Portuguese, Simplified Chinese and Japanese. The app does not provide regulated medical services or protected third-party content requiring credentials.
+
+RECORDING
+Attached: the developer's iPhone screen recording from October 31, 2026, demonstrating the core feeding flow. It predates the BreastFeed rename and JSON backup/import additions; the current build includes those changes as described above.

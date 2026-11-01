@@ -58,3 +58,27 @@ enum FeedingCSV {
         return lines.joined(separator: "\r\n") + "\r\n"
     }
 }
+
+// Versioned backup format. Dates are milliseconds since the Unix epoch.
+struct FeedingBackup: Codable {
+    var schemaVersion = 1
+    var exportedAt: Date
+    var babies: [Baby]
+
+    struct Baby: Codable {
+        var id: UUID
+        var name: String
+        var createdAt: Date
+        var feedings: [Feed]
+    }
+
+    struct Feed: Codable {
+        var id: UUID
+        var startedAt: Date
+        var createdAt: Date
+        var kind: FeedingKind
+        var side: FeedingSide?
+        var ml: Double?
+        var durationSeconds: Double?
+    }
+}

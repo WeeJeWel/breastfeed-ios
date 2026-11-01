@@ -6,6 +6,11 @@ private struct TimelineSlot: Hashable {
     let index: Int
 }
 
+private struct FeedingExport: Identifiable {
+    let id = UUID()
+    let url: URL
+}
+
 struct TimelineView: View {
     @EnvironmentObject private var store: FeedingStore
     @State private var selectedDay = Calendar.current.startOfDay(for: Date())
@@ -29,11 +34,9 @@ struct TimelineView: View {
     @State private var editingEvent: FeedingEvent?
     @State private var deletingEvent: FeedingEvent?
     @State private var confirmingDelete = false
-    @State private var exportURL: URL?
-    @State private var showingExport = false
+    @State private var exportFile: FeedingExport?
     @State private var showingBabyName = false
     @State private var managingBaby: FeedingJournal?
-    @State private var babyName = ""
 
     private var days: [Date] {
         (-30...0).compactMap { Calendar.current.date(byAdding: .day, value: $0, to: dayAnchor) }
@@ -77,7 +80,6 @@ struct TimelineView: View {
                     }
                     Divider()
                     Button {
-                        babyName = ""
                         showingBabyName = true
                     } label: { Label("New Baby", systemImage: "plus") }
                     .accessibilityLabel("New Baby")
@@ -109,12 +111,19 @@ struct TimelineView: View {
                         Label(store.sharedStore != nil && store.activeJournal?.objectID.persistentStore == store.sharedStore ? String(localized: "Participants") : String(localized: "Invite Partner"), systemImage: "person.2")
                     }
                     .disabled(store.activeJournal == nil)
-                    Button {
-                        do { exportURL = try store.exportCSV(); showingExport = true }
-                        catch { store.errorMessage = error.localizedDescription }
+                    Menu {
+                        Button("CSV") {
+                            do { exportFile = FeedingExport(url: try store.exportCSV()) }
+                            catch { store.errorMessage = error.localizedDescription }
+                        }
+                        Button("JSON") {
+                            do { exportFile = FeedingExport(url: try store.exportJSON()) }
+                            catch { store.errorMessage = error.localizedDescription }
+                        }
                     } label: {
-                        Label("Export CSV", systemImage: "square.and.arrow.up")
+                        Label("Export", systemImage: "square.and.arrow.up")
                     }
+                    .disabled(store.activeJournal == nil)
                 } label: {
                     Image(systemName: "ellipsis").frame(width: 44, height: 44)
                 }
@@ -296,18 +305,9 @@ struct TimelineView: View {
         .background(Palette.background)
         .foregroundStyle(Palette.cream)
         .safeAreaInset(edge: .bottom, spacing: 0) { feedingBar }
-        .alert("New Baby", isPresented: $showingBabyName) {
-            TextField("Baby name", text: $babyName)
-                .textInputAutocapitalization(.words)
-            Button("Add") {
-                do {
-                    try store.createBaby(name: babyName)
-                    UINotificationFeedbackGenerator().notificationOccurred(.success)
-                } catch { store.errorMessage = error.localizedDescription }
-            }
-            .disabled(babyName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-            Button("Cancel", role: .cancel) {}
-        }
+        .sheet(isPresented: $showingBabyName, onDismiss: {
+            if store.newFeedingRequested { showingNew = true; store.newFeedingRequested = false }
+        }) { NewBabyEditor().environmentObject(store) }
         .alert("Delete Feeding?", isPresented: $confirmingDelete, presenting: deletingEvent) { event in
             Button("Delete Feeding", role: .destructive) {
                 guard !event.isDeleted else { deletingEvent = nil; return }
@@ -329,11 +329,11 @@ struct TimelineView: View {
             newFeedingStart = nil
             showingBabyName = false
             confirmingDelete = false
-            if editingEvent != nil || managingBaby != nil || showingSettings || showingExport || showingCalendar {
+            if editingEvent != nil || managingBaby != nil || showingSettings || exportFile != nil || showingCalendar {
                 editingEvent = nil
                 managingBaby = nil
                 showingSettings = false
-                showingExport = false
+                exportFile = nil
                 showingCalendar = false
             } else {
                 showingNew = true
@@ -364,9 +364,9 @@ struct TimelineView: View {
                         isSharedJournal: store.sharedStore != nil && store.activeJournal?.objectID.persistentStore == store.sharedStore)
                 .environmentObject(store)
         }
-        .sheet(isPresented: $showingExport, onDismiss: {
+        .sheet(item: $exportFile, onDismiss: {
             if store.newFeedingRequested { showingNew = true; store.newFeedingRequested = false }
-        }) { if let exportURL { ExportSheet(url: exportURL) } }
+        }) { file in ExportSheet(url: file.url) }
         .sheet(isPresented: $showingCalendar, onDismiss: {
             if store.newFeedingRequested { showingNew = true; store.newFeedingRequested = false }
         }) {

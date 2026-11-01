@@ -1,0 +1,767 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DDDC8413CC6FD46115EF0F6 /* NewFeedingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BD1065CE4A045941EF2898 /* NewFeedingControl.swift */; };
+		1B5B7B651607888374947800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA930E46C712783AE9DB97BF /* Assets.xcassets */; };
+		2C99E151238AE4228951D340 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28823194B54B9C3C97A0A0CB /* Theme.swift */; };
+		334DBF2BA845ADCDA77315EC /* BabyEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4904E999EA1224AD0280FC73 /* BabyEditor.swift */; };
+		3813D1FD683434C71A244AA1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28823194B54B9C3C97A0A0CB /* Theme.swift */; };
+		38D7A5F9F7470FA765B2CBC1 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC996021B2C71978CA40735 /* TimelineView.swift */; };
+		3C867C781E9C2E7CE035DD65 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B3DA068ED75F8E4EBCCBD9 /* Feeding.swift */; };
+		56A37CBDFBE21EA34BAB8B47 /* FeedingActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C94131C8A5B920F63F321C /* FeedingActivityWidget.swift */; };
+		61C374B6BCA3391C291DB667 /* FeedingEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E27BEA63B2DC2C8CC64E4B /* FeedingEditor.swift */; };
+		61D35C171D60A49E65A872EE /* BreastFeedWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = ED9CE79A361B4DFEF79E1A99 /* BreastFeedWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		62B42319248D5A89C2CFDC84 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B3DA068ED75F8E4EBCCBD9 /* Feeding.swift */; };
+		67BBC77D1785AA9F05CD5771 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9A53A3175AC6C343680786EC /* Localizable.xcstrings */; };
+		69EDBE691AFA374C4E6C512C /* NewFeedingIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FEAC631A94361D16FB74D2 /* NewFeedingIntent.swift */; };
+		7447F4F8CEF4F263C96289D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AAE722C292AC5EDC723A16D /* Assets.xcassets */; };
+		7AD87ADC86158275C6A69671 /* BreastFeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7546D23F64FC76183241074C /* BreastFeedApp.swift */; };
+		82734D4EF4057A5FCCA7E6E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA930E46C712783AE9DB97BF /* Assets.xcassets */; };
+		89997800CF9E4F27D12F551D /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B3DA068ED75F8E4EBCCBD9 /* Feeding.swift */; };
+		8B41CE2C003131EC00EEFE5B /* SharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D82797AB62FA9F1A79F8205 /* SharingView.swift */; };
+		8F47FBE3787BB7AA253E6014 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9A53A3175AC6C343680786EC /* Localizable.xcstrings */; };
+		91467F1D282DC2E14ABB492A /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0AED8B13AE18A30E78314245 /* AppShortcuts.xcstrings */; };
+		959E58FCE08AB9E9DAA6A9D0 /* FeedingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E1A9AD8F7E6A2316123973 /* FeedingActivity.swift */; };
+		973C8708980CA945767B6983 /* FeedingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928B5ABAE85289DB781A9DB /* FeedingStore.swift */; };
+		98F58980CFEBCC21EB1482B4 /* BreastFeedWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F021C459772AE031EE248 /* BreastFeedWatchApp.swift */; };
+		9B72FD188ADB01161CA08971 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28823194B54B9C3C97A0A0CB /* Theme.swift */; };
+		A01DFDA88EC713524BDE7AD8 /* FeedingActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FA146A6C1AEB1FD8209C9332 /* FeedingActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BBF4D6DDC5230B35E604BC49 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1DA152BF8B22B83FFA940DF0 /* PrivacyInfo.xcprivacy */; };
+		C4071389775CFA20FF4CED93 /* NewFeedingIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FEAC631A94361D16FB74D2 /* NewFeedingIntent.swift */; };
+		C8691D7DB6E4EFA7D4D112B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA930E46C712783AE9DB97BF /* Assets.xcassets */; };
+		D7A668C94931E0AE53EC4551 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9A53A3175AC6C343680786EC /* Localizable.xcstrings */; };
+		DAF6276E0F12B4E3986E6201 /* FeedingStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE04C9930862D97E17EC25 /* FeedingStoreTests.swift */; };
+		DBA15E3EE116AE15EBA896E7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1DA152BF8B22B83FFA940DF0 /* PrivacyInfo.xcprivacy */; };
+		DBE7B6F0C0C8AAF87E43C22E /* FeedingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928B5ABAE85289DB781A9DB /* FeedingStore.swift */; };
+		DFEBC5AAD80EA174FEA833BB /* LiveActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82B5913845C52078665B1E9 /* LiveActivityController.swift */; };
+		E4E2DF8393061F24A643DEC0 /* FeedingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E1A9AD8F7E6A2316123973 /* FeedingActivity.swift */; };
+		E9EA75B25468D69C5D5BBE21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FDB073152247D446199D061 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		29168D29ACDFC89F502AB71C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B474B6C5EEA048DFDE52DB2B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BD8FE1A3E10975F6866FEE3;
+			remoteInfo = FeedingActivity;
+		};
+		C3DEDF094D54BB263A170681 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B474B6C5EEA048DFDE52DB2B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79FB60367B2BA4D9D5475A13;
+			remoteInfo = BreastFeedWatch;
+		};
+		C96119DAC41C06623E8CCA6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B474B6C5EEA048DFDE52DB2B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2C394A8EE325A2DEF65262B;
+			remoteInfo = BreastFeed;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4AFCCB25E82682006D46A768 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A01DFDA88EC713524BDE7AD8 /* FeedingActivity.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C5082E84932EB918C63362C /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				61D35C171D60A49E65A872EE /* BreastFeedWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0AED8B13AE18A30E78314245 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
+		179810A72AFF5895EF86D0F0 /* BreastFeedTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BreastFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DA152BF8B22B83FFA940DF0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		28823194B54B9C3C97A0A0CB /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		3EFE04C9930862D97E17EC25 /* FeedingStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingStoreTests.swift; sourceTree = "<group>"; };
+		47E1A9AD8F7E6A2316123973 /* FeedingActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingActivity.swift; sourceTree = "<group>"; };
+		4904E999EA1224AD0280FC73 /* BabyEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyEditor.swift; sourceTree = "<group>"; };
+		4CC996021B2C71978CA40735 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		4D82797AB62FA9F1A79F8205 /* SharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingView.swift; sourceTree = "<group>"; };
+		4FDB073152247D446199D061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		59B3DA068ED75F8E4EBCCBD9 /* Feeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feeding.swift; sourceTree = "<group>"; };
+		6AAE722C292AC5EDC723A16D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		71FEAC631A94361D16FB74D2 /* NewFeedingIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeedingIntent.swift; sourceTree = "<group>"; };
+		7546D23F64FC76183241074C /* BreastFeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedApp.swift; sourceTree = "<group>"; };
+		7F8F021C459772AE031EE248 /* BreastFeedWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreastFeedWatchApp.swift; sourceTree = "<group>"; };
+		83F05193136F58AF2286E049 /* BreastFeed.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BreastFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97E27BEA63B2DC2C8CC64E4B /* FeedingEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingEditor.swift; sourceTree = "<group>"; };
+		9A53A3175AC6C343680786EC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		AA930E46C712783AE9DB97BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1BD1065CE4A045941EF2898 /* NewFeedingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeedingControl.swift; sourceTree = "<group>"; };
+		B82B5913845C52078665B1E9 /* LiveActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityController.swift; sourceTree = "<group>"; };
+		E1C94131C8A5B920F63F321C /* FeedingActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingActivityWidget.swift; sourceTree = "<group>"; };
+		ED9CE79A361B4DFEF79E1A99 /* BreastFeedWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreastFeedWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F928B5ABAE85289DB781A9DB /* FeedingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedingStore.swift; sourceTree = "<group>"; };
+		FA146A6C1AEB1FD8209C9332 /* FeedingActivity.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = FeedingActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0FEE38D4E354A189E65599A6 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				6AAE722C292AC5EDC723A16D /* Assets.xcassets */,
+				7F8F021C459772AE031EE248 /* BreastFeedWatchApp.swift */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		595DE08C457C52664B6BC61D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83F05193136F58AF2286E049 /* BreastFeed.app */,
+				179810A72AFF5895EF86D0F0 /* BreastFeedTests.xctest */,
+				ED9CE79A361B4DFEF79E1A99 /* BreastFeedWatch.app */,
+				FA146A6C1AEB1FD8209C9332 /* FeedingActivity.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9108FB902816D8F6242A19E3 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AA930E46C712783AE9DB97BF /* Assets.xcassets */,
+				59B3DA068ED75F8E4EBCCBD9 /* Feeding.swift */,
+				47E1A9AD8F7E6A2316123973 /* FeedingActivity.swift */,
+				F928B5ABAE85289DB781A9DB /* FeedingStore.swift */,
+				9A53A3175AC6C343680786EC /* Localizable.xcstrings */,
+				71FEAC631A94361D16FB74D2 /* NewFeedingIntent.swift */,
+				1DA152BF8B22B83FFA940DF0 /* PrivacyInfo.xcprivacy */,
+				28823194B54B9C3C97A0A0CB /* Theme.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B68213FAC0707255D7A3FC04 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3EFE04C9930862D97E17EC25 /* FeedingStoreTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		DB08669186E0409E03DF10D4 = {
+			isa = PBXGroup;
+			children = (
+				F657F76D9D1B89B1A39DE07E /* iPhone */,
+				DF03DFD8A925DFDD113F9115 /* LiveActivity */,
+				9108FB902816D8F6242A19E3 /* Shared */,
+				B68213FAC0707255D7A3FC04 /* Tests */,
+				0FEE38D4E354A189E65599A6 /* Watch */,
+				595DE08C457C52664B6BC61D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DF03DFD8A925DFDD113F9115 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				E1C94131C8A5B920F63F321C /* FeedingActivityWidget.swift */,
+				B1BD1065CE4A045941EF2898 /* NewFeedingControl.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		F657F76D9D1B89B1A39DE07E /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				0AED8B13AE18A30E78314245 /* AppShortcuts.xcstrings */,
+				4FDB073152247D446199D061 /* Assets.xcassets */,
+				4904E999EA1224AD0280FC73 /* BabyEditor.swift */,
+				7546D23F64FC76183241074C /* BreastFeedApp.swift */,
+				97E27BEA63B2DC2C8CC64E4B /* FeedingEditor.swift */,
+				B82B5913845C52078665B1E9 /* LiveActivityController.swift */,
+				4D82797AB62FA9F1A79F8205 /* SharingView.swift */,
+				4CC996021B2C71978CA40735 /* TimelineView.swift */,
+			);
+			path = iPhone;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0BD8FE1A3E10975F6866FEE3 /* FeedingActivity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB569D7D158E00AB4C6A39CC /* Build configuration list for PBXNativeTarget "FeedingActivity" */;
+			buildPhases = (
+				55D4F62F422B07EB3FBE2BDD /* Sources */,
+				27AA570D2145D17FFAADD2DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FeedingActivity;
+			packageProductDependencies = (
+			);
+			productName = FeedingActivity;
+			productReference = FA146A6C1AEB1FD8209C9332 /* FeedingActivity.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		79FB60367B2BA4D9D5475A13 /* BreastFeedWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9B56ED5C8F732F0840C4D91 /* Build configuration list for PBXNativeTarget "BreastFeedWatch" */;
+			buildPhases = (
+				49F11AD4A2F706D601450C16 /* Sources */,
+				754333F2AC7A44A0C67A974E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BreastFeedWatch;
+			packageProductDependencies = (
+			);
+			productName = BreastFeedWatch;
+			productReference = ED9CE79A361B4DFEF79E1A99 /* BreastFeedWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E2C394A8EE325A2DEF65262B /* BreastFeed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2796400A8A8FF4B7652297A6 /* Build configuration list for PBXNativeTarget "BreastFeed" */;
+			buildPhases = (
+				AA835053E2FDA669F714533C /* Sources */,
+				85D571D89B535995B65B0BBF /* Resources */,
+				4AFCCB25E82682006D46A768 /* Embed Foundation Extensions */,
+				7C5082E84932EB918C63362C /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A1C4AEEAD7BFA7FB40D7742 /* PBXTargetDependency */,
+				11686AE97305004D5E55ADDA /* PBXTargetDependency */,
+			);
+			name = BreastFeed;
+			packageProductDependencies = (
+			);
+			productName = BreastFeed;
+			productReference = 83F05193136F58AF2286E049 /* BreastFeed.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F0C9929DD3BB864F9EBAC69D /* BreastFeedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D09A2E0E86C9883C4E4749EC /* Build configuration list for PBXNativeTarget "BreastFeedTests" */;
+			buildPhases = (
+				074DBDEB717B543824B0324C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D0146F52C0337848AB642EC /* PBXTargetDependency */,
+			);
+			name = BreastFeedTests;
+			packageProductDependencies = (
+			);
+			productName = BreastFeedTests;
+			productReference = 179810A72AFF5895EF86D0F0 /* BreastFeedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B474B6C5EEA048DFDE52DB2B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					0BD8FE1A3E10975F6866FEE3 = {
+						DevelopmentTeam = FY9967QY8V;
+						ProvisioningStyle = Automatic;
+					};
+					79FB60367B2BA4D9D5475A13 = {
+						DevelopmentTeam = FY9967QY8V;
+						ProvisioningStyle = Automatic;
+					};
+					E2C394A8EE325A2DEF65262B = {
+						DevelopmentTeam = FY9967QY8V;
+						ProvisioningStyle = Automatic;
+					};
+					F0C9929DD3BB864F9EBAC69D = {
+						DevelopmentTeam = FY9967QY8V;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D021AE2378366F3937E7B745 /* Build configuration list for PBXProject "BreastFeed" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				de,
+				en,
+				es,
+				fr,
+				it,
+				ja,
+				nl,
+				"pt-BR",
+				"zh-Hans",
+			);
+			mainGroup = DB08669186E0409E03DF10D4;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 595DE08C457C52664B6BC61D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E2C394A8EE325A2DEF65262B /* BreastFeed */,
+				F0C9929DD3BB864F9EBAC69D /* BreastFeedTests */,
+				79FB60367B2BA4D9D5475A13 /* BreastFeedWatch */,
+				0BD8FE1A3E10975F6866FEE3 /* FeedingActivity */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		27AA570D2145D17FFAADD2DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8691D7DB6E4EFA7D4D112B7 /* Assets.xcassets in Resources */,
+				D7A668C94931E0AE53EC4551 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		754333F2AC7A44A0C67A974E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B5B7B651607888374947800 /* Assets.xcassets in Resources */,
+				7447F4F8CEF4F263C96289D5 /* Assets.xcassets in Resources */,
+				8F47FBE3787BB7AA253E6014 /* Localizable.xcstrings in Resources */,
+				DBA15E3EE116AE15EBA896E7 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D571D89B535995B65B0BBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91467F1D282DC2E14ABB492A /* AppShortcuts.xcstrings in Resources */,
+				82734D4EF4057A5FCCA7E6E1 /* Assets.xcassets in Resources */,
+				E9EA75B25468D69C5D5BBE21 /* Assets.xcassets in Resources */,
+				67BBC77D1785AA9F05CD5771 /* Localizable.xcstrings in Resources */,
+				BBF4D6DDC5230B35E604BC49 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		074DBDEB717B543824B0324C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF6276E0F12B4E3986E6201 /* FeedingStoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49F11AD4A2F706D601450C16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98F58980CFEBCC21EB1482B4 /* BreastFeedWatchApp.swift in Sources */,
+				62B42319248D5A89C2CFDC84 /* Feeding.swift in Sources */,
+				973C8708980CA945767B6983 /* FeedingStore.swift in Sources */,
+				9B72FD188ADB01161CA08971 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55D4F62F422B07EB3FBE2BDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89997800CF9E4F27D12F551D /* Feeding.swift in Sources */,
+				959E58FCE08AB9E9DAA6A9D0 /* FeedingActivity.swift in Sources */,
+				56A37CBDFBE21EA34BAB8B47 /* FeedingActivityWidget.swift in Sources */,
+				0DDDC8413CC6FD46115EF0F6 /* NewFeedingControl.swift in Sources */,
+				C4071389775CFA20FF4CED93 /* NewFeedingIntent.swift in Sources */,
+				3813D1FD683434C71A244AA1 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA835053E2FDA669F714533C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				334DBF2BA845ADCDA77315EC /* BabyEditor.swift in Sources */,
+				7AD87ADC86158275C6A69671 /* BreastFeedApp.swift in Sources */,
+				3C867C781E9C2E7CE035DD65 /* Feeding.swift in Sources */,
+				E4E2DF8393061F24A643DEC0 /* FeedingActivity.swift in Sources */,
+				61C374B6BCA3391C291DB667 /* FeedingEditor.swift in Sources */,
+				DBE7B6F0C0C8AAF87E43C22E /* FeedingStore.swift in Sources */,
+				DFEBC5AAD80EA174FEA833BB /* LiveActivityController.swift in Sources */,
+				69EDBE691AFA374C4E6C512C /* NewFeedingIntent.swift in Sources */,
+				8B41CE2C003131EC00EEFE5B /* SharingView.swift in Sources */,
+				2C99E151238AE4228951D340 /* Theme.swift in Sources */,
+				38D7A5F9F7470FA765B2CBC1 /* TimelineView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11686AE97305004D5E55ADDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79FB60367B2BA4D9D5475A13 /* BreastFeedWatch */;
+			targetProxy = C3DEDF094D54BB263A170681 /* PBXContainerItemProxy */;
+		};
+		7D0146F52C0337848AB642EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2C394A8EE325A2DEF65262B /* BreastFeed */;
+			targetProxy = C96119DAC41C06623E8CCA6A /* PBXContainerItemProxy */;
+		};
+		8A1C4AEEAD7BFA7FB40D7742 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0BD8FE1A3E10975F6866FEE3 /* FeedingActivity */;
+			targetProxy = 29168D29ACDFC89F502AB71C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0EE1DDE7184FF5E12715DD41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/Watch.entitlements;
+				INFOPLIST_FILE = "Config/Watch-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = app.breastfeed.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		1ECF5E28818383A899BA7E2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Config/Activity.entitlements;
+				INFOPLIST_FILE = "Config/Activity-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.breastfeed.activity;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2851F5779E26365BA530CE4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/iPhone.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Config/iPhone-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.breastfeed;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7DA1ACF84CAC1FFE70093693 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.breastfeed.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BreastFeed.app/BreastFeed";
+			};
+			name = Debug;
+		};
+		887593A6E8C9A3460BD30094 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLOUDKIT_CONTAINER = iCloud.app.breastfeed;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = FY9967QY8V;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		9CF7F0997057CE992693268B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Config/Activity.entitlements;
+				INFOPLIST_FILE = "Config/Activity-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.breastfeed.activity;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A3D7BEE2034223ABB3646A7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLOUDKIT_CONTAINER = iCloud.app.breastfeed;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = FY9967QY8V;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		CE97B1123019402333B1BFB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/Watch.entitlements;
+				INFOPLIST_FILE = "Config/Watch-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = app.breastfeed.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		DAC088B212B696FBA0C8E115 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.breastfeed.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BreastFeed.app/BreastFeed";
+			};
+			name = Release;
+		};
+		E2B5A2F82FE0F430CF289F69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/iPhone.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Config/iPhone-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.breastfeed;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2796400A8A8FF4B7652297A6 /* Build configuration list for PBXNativeTarget "BreastFeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2851F5779E26365BA530CE4A /* Debug */,
+				E2B5A2F82FE0F430CF289F69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CB569D7D158E00AB4C6A39CC /* Build configuration list for PBXNativeTarget "FeedingActivity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CF7F0997057CE992693268B /* Debug */,
+				1ECF5E28818383A899BA7E2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D021AE2378366F3937E7B745 /* Build configuration list for PBXProject "BreastFeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D7BEE2034223ABB3646A7A /* Debug */,
+				887593A6E8C9A3460BD30094 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D09A2E0E86C9883C4E4749EC /* Build configuration list for PBXNativeTarget "BreastFeedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DA1ACF84CAC1FFE70093693 /* Debug */,
+				DAC088B212B696FBA0C8E115 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E9B56ED5C8F732F0840C4D91 /* Build configuration list for PBXNativeTarget "BreastFeedWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE97B1123019402333B1BFB6 /* Debug */,
+				0EE1DDE7184FF5E12715DD41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B474B6C5EEA048DFDE52DB2B /* Project object */;
+}

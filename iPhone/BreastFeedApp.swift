@@ -3,7 +3,7 @@ import SwiftUI
 import UIKit
 
 @main
-struct BoobieTrackrApp: App {
+struct BreastFeedApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var store = FeedingStore.shared
     @Environment(\.scenePhase) private var scenePhase

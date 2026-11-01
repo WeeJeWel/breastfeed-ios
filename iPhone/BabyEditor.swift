@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import UniformTypeIdentifiers
 
 struct BabyEditor: View {
     @EnvironmentObject private var store: FeedingStore
@@ -71,5 +72,72 @@ struct BabyEditor: View {
             Text("This permanently deletes \(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? journal.name : name) and all their feedings, including for anyone sharing this baby’s journal.")
         }
         .onChange(of: journal.isDeleted) { _, deleted in if deleted { dismiss() } }
+    }
+}
+
+struct NewBabyEditor: View {
+    @EnvironmentObject private var store: FeedingStore
+    @Environment(\.dismiss) private var dismiss
+    @State private var name = ""
+    @State private var showingImport = false
+    @State private var importedCount: Int?
+    @State private var errorMessage: String?
+    @State private var contentHeight: CGFloat = 250
+    @FocusState private var nameFocused: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("New Baby").font(.headline)
+            TextField("Baby name", text: $name)
+                .textInputAutocapitalization(.words)
+                .autocorrectionDisabled()
+                .submitLabel(.done)
+                .focused($nameFocused)
+                .onSubmit { nameFocused = false }
+                .padding(18)
+                .background(Palette.surface, in: RoundedRectangle(cornerRadius: 18))
+            Button("Add") {
+                do {
+                    try store.createBaby(name: name)
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    dismiss()
+                } catch { errorMessage = error.localizedDescription }
+            }
+            .buttonStyle(.borderedProminent).tint(Palette.accent)
+            .frame(maxWidth: .infinity)
+            .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            Button("Import JSON") {
+                nameFocused = false
+                showingImport = true
+            }
+            .font(.footnote).foregroundStyle(Palette.muted)
+            .frame(maxWidth: .infinity, minHeight: 44)
+        }
+        .padding(.horizontal, 20).padding(.top, 28).padding(.bottom, 12)
+        .foregroundStyle(Palette.cream)
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { contentHeight = ceil($0) }
+        .presentationDetents([.height(contentHeight)])
+        .presentationBackground(Palette.background)
+        .presentationDragIndicator(.visible)
+        .fileImporter(isPresented: $showingImport, allowedContentTypes: [.json]) { result in
+            do {
+                let url = try result.get()
+                let access = url.startAccessingSecurityScopedResource()
+                defer { if access { url.stopAccessingSecurityScopedResource() } }
+                guard let size = try url.resourceValues(forKeys: [.fileSizeKey]).fileSize,
+                      size <= 25_000_000 else { throw FeedingError.invalidBackup }
+                importedCount = try store.importJSON(Data(contentsOf: url))
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            } catch { errorMessage = error.localizedDescription }
+        }
+        .alert("Import Complete", isPresented: Binding(get: { importedCount != nil }, set: { if !$0 { importedCount = nil } })) {
+            Button("Done") { dismiss() }
+        } message: {
+            Text("Added \(importedCount ?? 0) feedings. Existing babies and feedings were kept.")
+        }
+        .alert("Import Failed", isPresented: Binding(get: { errorMessage != nil }, set: { if !$0 { errorMessage = nil } })) {
+            Button("OK") { errorMessage = nil }
+        } message: { Text(errorMessage ?? "") }
+        .preferredColorScheme(.dark)
     }
 }

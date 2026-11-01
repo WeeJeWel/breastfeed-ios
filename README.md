@@ -1,4 +1,4 @@
-# BoobieTrackr
+# BreastFeed
 
 One less thing to remember.
 
@@ -18,6 +18,6 @@ A simple feeding journal for iPhone and Apple Watch, made for sleepy parents and
 - **Always within reach.** Log feeds from Apple Watch and follow timers on your iPhone’s Lock Screen.
 - **Easy on sleepy eyes.** A dark interface, soft pink accents, and large controls.
 
-Free. No ads. No separate account. Export your feeding history whenever you need it.
+Free. No ads. No separate account. Export a baby’s feeding history as CSV or JSON, and restore a JSON backup whenever you need it.
 
 Made with love for my fiancée and our little one.

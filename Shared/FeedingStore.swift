@@ -30,7 +30,7 @@ final class FeedingJournal: NSManagedObject, Identifiable {
 }
 
 enum FeedingError: LocalizedError {
-    case storageUnavailable, invalidAmount, invalidDuration, invalidSide, missingTimer, invalidTime, invalidBabyName
+    case storageUnavailable, invalidAmount, invalidDuration, invalidSide, missingTimer, invalidTime, invalidBabyName, invalidBackup
     var errorDescription: String? {
         switch self {
         case .storageUnavailable: return String(localized: "The feeding journal couldn’t be opened. Please restart the app and try again.")
@@ -39,6 +39,7 @@ enum FeedingError: LocalizedError {
         case .invalidSide: return String(localized: "Choose Left or Right for breastfeeding.")
         case .missingTimer: return String(localized: "This timer is no longer running. Its feeding is still in your timeline.")
         case .invalidTime: return String(localized: "A feeding can’t start in the future.")
+        case .invalidBackup: return String(localized: "This JSON backup is invalid or uses an unsupported version. Nothing was imported.")
         case .invalidBabyName: return String(localized: "Enter a name for your baby.")
         }
     }
@@ -48,7 +49,7 @@ enum FeedingError: LocalizedError {
 final class FeedingStore: ObservableObject {
     static let shared = FeedingStore()
     static let containerID = Bundle.main.object(forInfoDictionaryKey: "CloudKitContainerIdentifier") as? String
-        ?? "iCloud.nl.weejewel.BoobieTrackr3000"
+        ?? "iCloud.app.breastfeed"
 
     let container: NSPersistentCloudKitContainer
     let defaults: UserDefaults
@@ -149,7 +150,7 @@ final class FeedingStore: ObservableObject {
         event.properties.append(toJournal)
         journal.properties.append(toEvents)
         model.entities = [event, journal]
-        container = NSPersistentCloudKitContainer(name: "BoobieTrackr3000", managedObjectModel: model)
+        container = NSPersistentCloudKitContainer(name: "BreastFeed", managedObjectModel: model)
         let directory = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent(demo ? (ProcessInfo.processInfo.arguments.contains("--screenshots") ? "Screenshots" : "Demo") : "Journal")
         do { try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true) }
         catch { errorMessage = error.localizedDescription }
@@ -173,7 +174,7 @@ final class FeedingStore: ObservableObject {
         if let failure { errorMessage = failure.localizedDescription }
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.transactionAuthor = "BoobieTrackr3000"
+        container.viewContext.transactionAuthor = "BreastFeed"
         cloudStatus = localOnly ? String(localized: "Stored on this device") : String(localized: "iCloud sync enabled")
         refresh()
 
@@ -363,9 +364,105 @@ final class FeedingStore: ObservableObject {
         })
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-        let url = directory.appendingPathComponent("BoobieTrackr.csv")
+        let url = directory.appendingPathComponent("BreastFeed.csv")
         try text.write(to: url, atomically: true, encoding: .utf8)
         return url
+    }
+
+    func exportJSON() throws -> URL {
+        guard loaded, let journal = activeJournal else { throw FeedingError.storageUnavailable }
+        let baby = FeedingBackup.Baby(id: journal.uuid, name: journal.name, createdAt: journal.createdAt,
+            feedings: ((journal.events?.allObjects as? [FeedingEvent]) ?? [])
+                .sorted { $0.startedAt < $1.startedAt }
+                .map { FeedingBackup.Feed(id: $0.uuid, startedAt: $0.startedAt, createdAt: $0.createdAt,
+                    kind: $0.kind, side: $0.side, ml: $0.volume?.doubleValue, durationSeconds: $0.duration?.doubleValue) })
+        let backup = FeedingBackup(exportedAt: Date(), babies: [baby])
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .millisecondsSince1970
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        let data = try encoder.encode(backup)
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        let url = directory.appendingPathComponent("BreastFeed.json")
+        try data.write(to: url, options: .atomic)
+        return url
+    }
+
+    @discardableResult
+    func importJSON(_ data: Data) throws -> Int {
+        guard loaded, let privateStore else { throw FeedingError.storageUnavailable }
+        guard data.count <= 25_000_000 else { throw FeedingError.invalidBackup }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .millisecondsSince1970
+        let backup: FeedingBackup
+        do { backup = try decoder.decode(FeedingBackup.self, from: data) }
+        catch { throw FeedingError.invalidBackup }
+        guard backup.schemaVersion == 1, !backup.babies.isEmpty,
+              backup.exportedAt.timeIntervalSince1970.isFinite else { throw FeedingError.invalidBackup }
+        var babyIDs = Set<UUID>()
+        var feedIDs = Set<UUID>()
+        // Validate the whole file before changing the context. Repeated imports
+        // preserve existing entries, including edits made since the export.
+        let journalRequest = NSFetchRequest<FeedingJournal>(entityName: "FeedingJournal")
+        let existingBabies = try container.viewContext.fetch(journalRequest)
+        let eventRequest = NSFetchRequest<FeedingEvent>(entityName: "FeedingEvent")
+        let existingFeeds = try container.viewContext.fetch(eventRequest)
+        let feedsByID = Dictionary(grouping: existingFeeds, by: \.uuid)
+        for baby in backup.babies {
+            guard babyIDs.insert(baby.id).inserted,
+                  !baby.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                  baby.createdAt.timeIntervalSince1970.isFinite else { throw FeedingError.invalidBackup }
+            for feed in baby.feedings {
+                guard feedIDs.insert(feed.id).inserted,
+                      feed.startedAt.timeIntervalSince1970.isFinite,
+                      feed.createdAt.timeIntervalSince1970.isFinite,
+                      feed.startedAt <= Date().addingTimeInterval(1),
+                      (feed.kind == .bottle ? feed.side == nil : feed.side != nil),
+                      !(feed.kind == .breast && feed.side == .both),
+                      !(feed.kind == .breast && feed.ml != nil) else { throw FeedingError.invalidBackup }
+                if let ml = feed.ml, !ml.isFinite || ml < 0 || ml > 10_000 { throw FeedingError.invalidBackup }
+                if let duration = feed.durationSeconds, !duration.isFinite || duration < 0 || duration > 86_400 {
+                    throw FeedingError.invalidBackup
+                }
+                if let matches = feedsByID[feed.id], matches.contains(where: { $0.journal?.uuid != baby.id }) {
+                    throw FeedingError.invalidBackup
+                }
+            }
+        }
+        var imported = 0
+        do {
+            for baby in backup.babies {
+                let journal: FeedingJournal
+                if let existing = existingBabies.first(where: { $0.uuid == baby.id }) {
+                    journal = existing
+                } else {
+                    journal = FeedingJournal(entity: container.managedObjectModel.entitiesByName["FeedingJournal"]!, insertInto: container.viewContext)
+                    journal.uuid = baby.id
+                    journal.name = baby.name.trimmingCharacters(in: .whitespacesAndNewlines)
+                    journal.createdAt = baby.createdAt
+                    container.viewContext.assign(journal, to: privateStore)
+                }
+                for feed in baby.feedings where feedsByID[feed.id] == nil {
+                    let event = FeedingEvent(entity: container.managedObjectModel.entitiesByName["FeedingEvent"]!, insertInto: container.viewContext)
+                    event.uuid = feed.id
+                    event.startedAt = feed.startedAt
+                    event.createdAt = feed.createdAt
+                    event.kindRaw = feed.kind.rawValue
+                    event.sideRaw = feed.side?.rawValue
+                    event.volume = feed.ml.map(NSNumber.init(value:))
+                    event.duration = feed.durationSeconds.map(NSNumber.init(value:))
+                    event.journal = journal
+                    container.viewContext.assign(event, to: journal.objectID.persistentStore ?? privateStore)
+                    imported += 1
+                }
+            }
+            try container.viewContext.save()
+        } catch {
+            container.viewContext.rollback()
+            throw error
+        }
+        selectedJournalID = backup.babies[0].id.uuidString
+        return imported
     }
 
     func seedDemo() {

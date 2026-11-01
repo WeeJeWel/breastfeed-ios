@@ -2,7 +2,7 @@ import CloudKit
 import CoreData
 import XCTest
 import SwiftUI
-@testable import BoobieTrackr3000
+@testable import BreastFeed
 
 @MainActor
 final class FeedingStoreTests: XCTestCase {
@@ -10,7 +10,7 @@ final class FeedingStoreTests: XCTestCase {
     var suite: String!
 
     override func setUp() async throws {
-        suite = "BoobieTrackrTests.\(UUID().uuidString)"
+        suite = "BreastFeedTests.\(UUID().uuidString)"
         store = FeedingStore(inMemory: true, defaults: UserDefaults(suiteName: suite)!)
     }
     override func tearDown() async throws {
@@ -58,6 +58,90 @@ final class FeedingStoreTests: XCTestCase {
         XCTAssertEqual(store.activeJournal, baby)
         XCTAssertTrue(store.events.isEmpty)
         store.shareRequests[baby.objectID] = nil
+    }
+
+    func testJSONExportsSelectedBabyAndRoundTripsWithoutStartingTimer() throws {
+        let first = try store.createBaby(name: "Alex")
+        let start = Date(timeIntervalSince1970: 1_700_000_000.123)
+        let breast = try store.add(kind: .breast, side: .right, start: start)
+        try store.update(breast, kind: .breast, side: .right, start: start, ml: nil, duration: 93.5)
+        let second = try store.createBaby(name: "Sam")
+        let pump = try store.add(kind: .pump, side: .both, start: start.addingTimeInterval(60), ml: 75.5)
+        let bottle = try store.add(kind: .bottle, start: start.addingTimeInterval(120), ml: 90)
+        try store.update(bottle, kind: .bottle, side: .left, start: bottle.startedAt, ml: 90, duration: 120)
+        let secondData = try Data(contentsOf: store.exportJSON())
+        store.selectedJournalID = first.uuid.uuidString
+        let firstData = try Data(contentsOf: store.exportJSON())
+        let target = FeedingStore(inMemory: true, defaults: store.defaults)
+        XCTAssertEqual(try target.importJSON(firstData), 1)
+        XCTAssertEqual(target.journals.map(\.uuid), [first.uuid])
+        XCTAssertNil(target.running)
+        XCTAssertEqual(target.events.first?.startedAt.timeIntervalSince1970 ?? 0, start.timeIntervalSince1970, accuracy: 0.001)
+        XCTAssertEqual(target.events.first?.duration?.doubleValue, 93.5)
+        XCTAssertEqual(target.events.first?.side, .right)
+        XCTAssertEqual(try target.importJSON(secondData), 2)
+        XCTAssertEqual(target.journals.map(\.uuid), [first.uuid, second.uuid])
+        XCTAssertEqual(target.activeJournal?.uuid, second.uuid)
+        XCTAssertEqual(target.events.map(\.uuid), [pump.uuid, bottle.uuid])
+        XCTAssertEqual(target.events[0].volume?.doubleValue, 75.5)
+        XCTAssertEqual(target.events[0].side, .both)
+        XCTAssertNil(target.events[1].side)
+        XCTAssertEqual(target.events[1].duration?.doubleValue, 120)
+    }
+
+    func testJSONRepeatedImportKeepsExistingEditsAndDoesNotDuplicate() throws {
+        let baby = try store.createBaby(name: "Alex")
+        let event = try store.add(kind: .bottle, ml: 60)
+        let data = try Data(contentsOf: store.exportJSON())
+        try store.renameBaby(baby, name: "New name")
+        try store.update(event, kind: .bottle, side: .left, start: event.startedAt, ml: 90, duration: nil)
+        XCTAssertEqual(try store.importJSON(data), 0)
+        XCTAssertEqual(try store.importJSON(data), 0)
+        XCTAssertEqual(store.journals.count, 1)
+        XCTAssertEqual(store.events.count, 1)
+        XCTAssertEqual(baby.name, "New name")
+        XCTAssertEqual(event.volume?.doubleValue, 90)
+    }
+
+    func testJSONRejectsInvalidOrConflictingBackupWithoutPartialImport() throws {
+        let baby = try store.createBaby(name: "Alex")
+        let event = try store.add(kind: .bottle, ml: 60)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .millisecondsSince1970
+        let original = try decoder.decode(FeedingBackup.self, from: Data(contentsOf: store.exportJSON()))
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .millisecondsSince1970
+        var badVersion = original
+        badVersion.schemaVersion = 999
+        var badAmount = original
+        badAmount.babies[0].id = UUID()
+        badAmount.babies[0].feedings[0].id = UUID()
+        badAmount.babies[0].feedings[0].ml = -1
+        var conflict = original
+        conflict.babies[0].id = UUID()
+        var repeatedID = original
+        repeatedID.babies.append(original.babies[0])
+        for backup in [badVersion, badAmount, conflict, repeatedID] {
+            XCTAssertThrowsError(try store.importJSON(encoder.encode(backup)))
+            XCTAssertFalse(store.container.viewContext.hasChanges)
+            XCTAssertEqual(store.journals.map(\.uuid), [baby.uuid])
+            XCTAssertEqual(store.events.map(\.uuid), [event.uuid])
+        }
+        XCTAssertThrowsError(try store.importJSON(Data("not a backup".utf8)))
+        XCTAssertFalse(store.container.viewContext.hasChanges)
+    }
+
+    func testJSONImportDoesNotMergeDifferentBabiesWithSameName() throws {
+        let baby = try store.createBaby(name: "Alex")
+        try store.add(kind: .breast, startTimer: false)
+        let data = try Data(contentsOf: store.exportJSON())
+        let target = FeedingStore(inMemory: true, defaults: store.defaults)
+        let other = try target.createBaby(name: "Alex")
+        XCTAssertEqual(try target.importJSON(data), 1)
+        XCTAssertEqual(target.journals.count, 2)
+        XCTAssertEqual(target.activeJournal?.uuid, baby.uuid)
+        target.selectedJournalID = other.uuid.uuidString
+        XCTAssertTrue(target.events.isEmpty)
     }
 
     func testNewBreastfeedingStartsTimerWithoutDuration() throws {

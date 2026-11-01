@@ -5,7 +5,7 @@ import WidgetKit
 @available(iOS 18.0, *)
 struct NewFeedingControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
-        StaticControlConfiguration(kind: "nl.weejewel.BoobieTrackr3000.newFeeding") {
+        StaticControlConfiguration(kind: "app.breastfeed.newFeeding") {
             ControlWidgetButton(action: NewFeedingIntent()) {
                 Label("New Feeding", image: "BreastControl")
             }

@@ -1,4 +1,4 @@
-BoobieTrackr 1.0 (3) — QA walkthrough
+BreastFeed 1.0 (3) — QA walkthrough
 
 Recording plan
 Use isolated simulator demo data with the fictional baby Cosmo. Do not record a family's real journal or Apple Account details. The recording must show actual interactions, not marketing mockups.
@@ -24,7 +24,7 @@ A local-only simulator demonstration cannot verify an actual CloudKit invitation
 Show More > Export CSV and the native share sheet. The file contains only the selected baby's journal.
 
 7. Control Center and Shortcuts
-On iOS 18 or later, add BoobieTrackr's New Feeding control in Control Center. Show the breasts icon and tap it to open the feeding sheet. Show the New Feeding action in Shortcuts. No entry is saved until the user confirms it.
+On iOS 18 or later, add BreastFeed's New Feeding control in Control Center. Show the breasts icon and tap it to open the feeding sheet. Show the New Feeding action in Shortcuts. No entry is saved until the user confirms it.
 
 8. Apple Watch
 Show the baby picker, Left/Right breastfeeding, running timer, Switch and Done, Bottle, and Pump Left/Right/Both. Show the last-feeding summary. A simulator recording does not establish real-device CloudKit sync.

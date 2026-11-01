@@ -22,7 +22,7 @@ for index in 0..<4 {
     let glow = CGGradient(colorsSpace: colorSpace, colors: [NSColor(srgbRed: 0.27, green: 0.10, blue: 0.17, alpha: 1).cgColor, NSColor(srgbRed: 0.065, green: 0.047, blue: 0.06, alpha: 1).cgColor] as CFArray, locations: [0, 1])!
     cg.drawRadialGradient(glow, startCenter: CGPoint(x: 660, y: 900), startRadius: 0, endCenter: CGPoint(x: 660, y: 900), endRadius: 1700, options: [])
     let brandFont = NSFont.systemFont(ofSize: 34, weight: .semibold)
-    ("BoobieTrackr" as NSString).draw(in: NSRect(x: 80, y: 2700, width: 1160, height: 58), withAttributes: [.font: brandFont, .foregroundColor: NSColor(calibratedWhite: 0.86, alpha: 1), .paragraphStyle: centered, .kern: 1.2])
+    ("BreastFeed" as NSString).draw(in: NSRect(x: 80, y: 2700, width: 1160, height: 58), withAttributes: [.font: brandFont, .foregroundColor: NSColor(calibratedWhite: 0.86, alpha: 1), .paragraphStyle: centered, .kern: 1.2])
 
     let mask = CGContext(data: nil, width: 1320, height: 2868, bitsPerComponent: 8, bytesPerRow: 5280, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
     NSGraphicsContext.current = NSGraphicsContext(cgContext: mask, flipped: false)
